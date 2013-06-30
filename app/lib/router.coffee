@@ -1,7 +1,7 @@
 application = require 'application'
 ChallengesLayout = require 'views/ChallengesLayout'
 
-module.exports = class Router extends Backbone.Router
+class Router extends Backbone.Router
 	routes:
 		'': 'index'
 
@@ -9,3 +9,4 @@ module.exports = class Router extends Backbone.Router
 		cl = new ChallengesLayout()
 		application.layout.content.show(cl)
 		
+module.exports = Router

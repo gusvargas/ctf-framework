@@ -1,4 +1,6 @@
 # Base class for all collections.
-module.exports = class Collection extends Backbone.Collection
+class Collection extends Backbone.Collection
+
+module.exports = Collection
 	
 

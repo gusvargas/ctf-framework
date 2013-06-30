@@ -1,8 +1,10 @@
 template = require './templates/challengesLayout'
 
-module.exports = class ChallengesLayout extends Backbone.Marionette.ItemView
+class ChallengesLayout extends Backbone.Marionette.ItemView
 	id: 'challenges-container'
 	template: template
 	
 	regions: {}
+
+module.exports = ChallengesLayout
 

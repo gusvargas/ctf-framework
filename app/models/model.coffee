@@ -1,3 +1,4 @@
 # Base class for all models.
-module.exports = class Model extends Backbone.Model
+class Model extends Backbone.Model
 
+module.exports = Model
