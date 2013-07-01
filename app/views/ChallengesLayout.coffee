@@ -1,4 +1,5 @@
-template = require './templates/challengesLayout'
+template = require 'views/templates/challengesLayout'
+NewChallengeView = require 'views/NewChallengeView'
 
 class ChallengesLayout extends Backbone.Marionette.Layout
 	id: 'challenges-layout'
@@ -6,7 +7,10 @@ class ChallengesLayout extends Backbone.Marionette.Layout
 	
 	regions:
 		sideBar: '#challenges-sidebar'
-		challenges: '#challanges-container'
+		main: '#challanges-container'
+
+	onRender: ->
+		@sideBar.show new NewChallengeView
 
 module.exports = ChallengesLayout
 
