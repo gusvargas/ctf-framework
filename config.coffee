@@ -14,6 +14,7 @@ exports.config =
           'vendor/scripts/backbone.js'
           'vendor/scripts/backbone.marionette.js'
           'vendor/scripts/bootstrap.js'
+          'vendor/scripts/datatables.js'
         ]
 
     stylesheets:
