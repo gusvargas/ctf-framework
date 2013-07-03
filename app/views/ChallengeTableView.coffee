@@ -3,12 +3,15 @@ ChallengeRow = require 'views/ChallengeRowView'
 
 class ChallengeTable extends Backbone.Marionette.CompositeView
 	tagName: 'table'
+	className: 'table table-striped table-condensed'
 	template: template
 	itemView: ChallengeRow
+	itemViewContainer: 'tbody'
 
-	appendHtml: (collectionView, itemView) ->
-		collectionView.$('tbody').append(itemView.el)
+	ui:
+		tbody: 'tbody'
 
-	onCompositeRendered: ->
+	onCompositeCollectionRendered: ->
+		@$el.dataTable() if @ui.tbody.children().length
 
 module.exports = ChallengeTable
