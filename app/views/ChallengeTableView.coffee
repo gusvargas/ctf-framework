@@ -12,6 +12,9 @@ class ChallengeTable extends Backbone.Marionette.CompositeView
 	ui:
 		tbody: 'tbody'
 
+	events:
+		'change input': 'handleChallengeSelect'
+
 	onCompositeCollectionRendered: ->
 		if @ui.tbody.children().length
 			@$el.dataTable
@@ -19,8 +22,15 @@ class ChallengeTable extends Backbone.Marionette.CompositeView
 				bLengthChange: false
 				bInfo: false
 				bAutoWidth: false
-				sDom: '<"toolbar">frtip'
+				sDom: '<"toolbar-container">frtip'
+				aoColumnDefs: [
+					aTargets: [0]
+					mData: null
+					sDefaultContent: "<input type='checkbox'>"
+				]
 				fnDrawCallback: =>
 					Application.vent.trigger 'challengeTable:initialized'
+
+	handleChallengeSelect: ->
 
 module.exports = ChallengeTable
