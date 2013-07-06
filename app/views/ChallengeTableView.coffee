@@ -1,9 +1,10 @@
 template = require 'views/templates/challengeTable'
 ChallengeRow = require 'views/ChallengeRowView'
+Application = require 'application'
 
 class ChallengeTable extends Backbone.Marionette.CompositeView
 	tagName: 'table'
-	className: 'table table-striped table-condensed'
+	className: 'table table-hover table-condensed'
 	template: template
 	itemView: ChallengeRow
 	itemViewContainer: 'tbody'
@@ -12,6 +13,14 @@ class ChallengeTable extends Backbone.Marionette.CompositeView
 		tbody: 'tbody'
 
 	onCompositeCollectionRendered: ->
-		@$el.dataTable() if @ui.tbody.children().length
+		if @ui.tbody.children().length
+			@$el.dataTable
+				bPaginate: false
+				bLengthChange: false
+				bInfo: false
+				bAutoWidth: false
+				sDom: '<"toolbar">frtip'
+				fnDrawCallback: =>
+					Application.vent.trigger 'challengeTable:initialized'
 
 module.exports = ChallengeTable
