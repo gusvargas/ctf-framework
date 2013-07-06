@@ -1,19 +1,61 @@
+input[type="text"]
+	height: 29px
+
 #challenges-sidebar
-	position: fixed
 	top: 40px
 	left: 0
 	padding: 20px
 	background: #efefef
 	height: 100%
-	width: 27%
 	box-shadow: 1px 0 6px 0 #aaa
 
 .new-challenge-form
 	input[type="text"], textarea
 		width: 97%
 
-	input[type="text"]
-		height: 29px
-
 	button
 		margin-top: 18px
+
+#challenges-container
+	width: 100%
+
+	.dataTables_wrapper
+		.toolbar
+			float: left
+			position: relative
+			top: 15px
+
+	.dataTables_filter
+		float: right
+		margin: 10px 0
+
+		label input[type='text']
+			position: relative
+			top: 4px
+
+		input[type='text']
+			margin-left: 5px
+
+	table
+		thead tr th
+			font-weight: bold
+
+			&:hover
+				cursor: pointer
+
+			&.name
+				width: 20%
+			&.category
+				width: 15%
+			&.points
+				width: 10%
+			&.description
+				width: 25%
+			&.target
+				width: 25%
+			&.locked
+				width: 5%
+
+		tbody tr td
+			white-space: nowrap
+			overflow: hidden
