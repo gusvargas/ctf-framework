@@ -2,6 +2,7 @@ template = require 'views/templates/challengesLayout'
 NewChallengeView = require 'views/NewChallengeView'
 Challenges = require 'collections/Challenges'
 ChallengeTable = require 'views/ChallengeTableView'
+ChallengeToolbar = require 'views/ChallengeToolbarView'
 Application = require 'application'
 
 class ChallengesLayout extends Backbone.Marionette.Layout
@@ -9,7 +10,7 @@ class ChallengesLayout extends Backbone.Marionette.Layout
 	template: template
 
 	ui:
-		toolbar: '.toolbar'
+		toolbar: '.toolbar-container'
 	
 	regions:
 		sideBar: '#challenges-sidebar'
@@ -29,7 +30,8 @@ class ChallengesLayout extends Backbone.Marionette.Layout
 	setupToolbar: ->
 		do @bindUIElements
 
-		@ui.toolbar.html 'This is the toolbar'
+		toolbarView = new ChallengeToolbar
+		@ui.toolbar.html toolbarView.render().el
 
 module.exports = ChallengesLayout
 
