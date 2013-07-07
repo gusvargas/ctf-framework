@@ -55,7 +55,7 @@ input[type="text"]
 				width: 25%
 			&.target
 				width: 25%
-			&.locked
+			&.status
 				width: 3%
 
 		tbody tr td
@@ -65,6 +65,16 @@ input[type="text"]
 			input[type='checkbox']
 				position: relative
 				top: -3px
+
+			.icon-lock, .icon-unlock
+				position: relative
+				left: 12px
+
+			.icon-lock
+				opacity: 0.3
+
+			.icon-unlock
+				opacity: 0.6
 
 .toolbar
 	.toolbar-btn
