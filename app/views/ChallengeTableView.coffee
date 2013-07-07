@@ -1,6 +1,6 @@
 template = require 'views/templates/challengeTable'
 ChallengeRow = require 'views/ChallengeRowView'
-Application = require 'application'
+App = require 'application'
 
 class ChallengeTable extends Backbone.Marionette.CompositeView
 	tagName: 'table'
@@ -12,25 +12,21 @@ class ChallengeTable extends Backbone.Marionette.CompositeView
 	ui:
 		tbody: 'tbody'
 
-	events:
-		'change input': 'handleChallengeSelect'
+	initialize: ->
+		@listenTo App.vent, 'removeRow', @removeRow
 
 	onCompositeCollectionRendered: ->
 		if @ui.tbody.children().length
-			@$el.dataTable
+			@dataTable = @$el.dataTable
 				bPaginate: false
 				bLengthChange: false
 				bInfo: false
 				bAutoWidth: false
 				sDom: '<"toolbar-container">frtip'
-				aoColumnDefs: [
-					aTargets: [0]
-					mData: null
-					sDefaultContent: "<input type='checkbox'>"
-				]
 				fnDrawCallback: =>
-					Application.vent.trigger 'challengeTable:initialized'
+					App.vent.trigger 'challengeTable:initialized'
 
-	handleChallengeSelect: ->
+	removeRow: (row) ->
+		@dataTable.fnDeleteRow row
 
 module.exports = ChallengeTable
