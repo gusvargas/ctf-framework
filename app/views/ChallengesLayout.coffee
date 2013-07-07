@@ -3,7 +3,7 @@ NewChallengeView = require 'views/NewChallengeView'
 Challenges = require 'collections/Challenges'
 ChallengeTable = require 'views/ChallengeTableView'
 ChallengeToolbar = require 'views/ChallengeToolbarView'
-Application = require 'application'
+App = require 'application'
 
 class ChallengesLayout extends Backbone.Marionette.Layout
 	id: 'challenges-layout'
@@ -17,7 +17,7 @@ class ChallengesLayout extends Backbone.Marionette.Layout
 		main: '#challenges-container'
 
 	initialize: ->
-		Application.vent.on 'challengeTable:initialized', @setupToolbar, @
+		@listenTo App.vent, 'challengeTable:initialized', @setupToolbar
 
 		@challenges = new Challenges
 		@challenges.fetch()
