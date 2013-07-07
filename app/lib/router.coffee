@@ -5,7 +5,7 @@ class Router extends Backbone.Router
 	routes:
 		'': 'index'
 
-	index: =>
+	index: ->
 		cl = new ChallengesLayout()
 		Application.layout.content.show(cl)
 		
