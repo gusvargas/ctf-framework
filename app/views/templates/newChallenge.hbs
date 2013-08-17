@@ -4,25 +4,25 @@
 		<legend>New Challenge</legend>
 
 		<label for="challenge-name">Name</label>
-		<input type="text" id="challenge-name">
+		<input type="text" id="challenge-name" value="{{name}}">
 
 		<label for="challenge-points">Points</label>
-		<input type="text" id="challenge-points">
+		<input type="text" id="challenge-points" value="{{points}}">
 
 		<label for="challenge-target">Target</label>
-		<input type="text" id="challenge-target">
+		<input type="text" id="challenge-target" value="{{target}}">
 
 		<label for="challenge-desc">Description</label>
-		<textarea id="challenge-desc"></textarea>
+		<textarea id="challenge-desc">{{description}}</textarea>
 
 		<label for="challenge-flag">Flag</label>
-		<input type="text" id="challenge-flag">
+		<input type="text" id="challenge-flag" value="{{flag}}">
 
 		<label for="challenge-status" class="checkbox">
-			<input type="checkbox" id="challenge-status"> Locked
+			<input type="checkbox" id="challenge-status" {{#if locked}}checked{{/if}}> Locked
 		</label>
 
-		<button class="btn btn-primary btn-block">Create</button>
+		<button class="btn btn-primary btn-block">{{#unless editing}}Create{{else}}Update{{/unless}}</button>
 
 	</fieldset>
 </form>

@@ -10,6 +10,9 @@ class ChallengeRow extends Backbone.Marionette.ItemView
 	ui:
 		checkbox: 'input[type="checkbox"]'
 
+	events:
+		'click': 'editMe'
+
 	modelEvents:
 		'destroy': 'removeMe'
 
@@ -25,6 +28,9 @@ class ChallengeRow extends Backbone.Marionette.ItemView
 			when 'lock' then @model.save locked:true, patch:true
 			when 'unlock' then @model.save locked:false, patch:true
 			when 'remove' then @model.destroy()
+
+	editMe: ->
+		App.vent.trigger 'editChallenge', @model
 
 	removeMe: ->
 		# event is fired so datatables can remove the row
