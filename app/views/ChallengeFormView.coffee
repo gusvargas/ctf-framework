@@ -5,6 +5,9 @@ class ChallengeForm extends Backbone.Marionette.ItemView
   template: template
   className: 'new-challenge-form'
 
+  ui:
+    form: 'form'
+
   events:
     'click button': 'createChallenge'
 
@@ -16,6 +19,12 @@ class ChallengeForm extends Backbone.Marionette.ItemView
       _.extend context, @model.toJSON(), {editing:editing}
 
     context
+
+  onRender: ->
+    @ui.form
+      .find('input')
+      .first()
+      .focus()
 
   initialize: ->
     @listenTo App.vent, 'editChallenge', @editChallenge
