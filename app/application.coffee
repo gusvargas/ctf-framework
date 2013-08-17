@@ -1,5 +1,6 @@
 AppLayout = require 'views/AppLayout'
 NavView = require 'views/NavView'
+Challenges = require 'collections/Challenges'
 
 class Application extends Backbone.Marionette.Application
     initialize: =>
@@ -20,6 +21,10 @@ class Application extends Backbone.Marionette.Application
             # Instantiate the router
             Router = require 'lib/router'
             @router = new Router()
+
+        @addInitializer (options) =>
+            @challenges = new Challenges
+            @challenges.fetch()
 
         @start()
 
