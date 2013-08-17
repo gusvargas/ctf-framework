@@ -1,5 +1,5 @@
 template = require 'views/templates/challengesLayout'
-NewChallenge = require 'views/NewChallengeView'
+ChallengeForm = require 'views/ChallengeFormView'
 Challenges = require 'collections/Challenges'
 ChallengeTable = require 'views/ChallengeTableView'
 ChallengeToolbar = require 'views/ChallengeToolbarView'
@@ -23,7 +23,7 @@ class ChallengesLayout extends Backbone.Marionette.Layout
 		@challenges.fetch()
 
 	onRender: ->
-		@sideBar.show new NewChallenge
+		@sideBar.show new ChallengeForm
 		@main.show new ChallengeTable
 			collection: @challenges
 

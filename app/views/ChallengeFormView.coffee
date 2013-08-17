@@ -1,7 +1,7 @@
-template = require 'views/templates/newChallenge'
+template = require 'views/templates/challengeForm'
 App = require 'application'
 
-class NewChallenge extends Backbone.Marionette.ItemView
+class ChallengeForm extends Backbone.Marionette.ItemView
   template: template
   className: 'new-challenge-form'
 
@@ -34,4 +34,4 @@ class NewChallenge extends Backbone.Marionette.ItemView
     @setModel model
     @render()
 
-module.exports = NewChallenge
+module.exports = ChallengeForm
