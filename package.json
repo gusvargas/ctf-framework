@@ -1,7 +1,7 @@
 {
-  "author": "Simeon Bateman",
-  "name": "Brunch-With-Marionette",
-  "description": "MarionetteJS application template for Brunch.io",
+  "author": "Gustavo Vargas",
+  "name": "CTF-Admin",
+  "description": "Admin interface for a CTF framework",
   "version": "0.0.1",
   "homepage": "",
   "repository": {
