@@ -3,7 +3,6 @@ NavView = require 'views/NavView'
 
 class Application extends Backbone.Marionette.Application
     initialize: =>
-         
         @on 'initialize:after', (options) =>
             Backbone.history.start pushState:true
             # Freeze the object

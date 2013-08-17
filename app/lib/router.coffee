@@ -8,5 +8,5 @@ class Router extends Backbone.Router
 	index: ->
 		cl = new ChallengesLayout()
 		Application.layout.content.show(cl)
-		
+
 module.exports = Router
