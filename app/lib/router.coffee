@@ -1,12 +1,13 @@
-Application = require 'application'
+App = require 'application'
 ChallengesLayout = require 'views/ChallengesLayout'
+ChallengeForm = require 'views/ChallengeFormView'
 
 class Router extends Backbone.Router
   routes:
-    '': 'index'
+    'challenges': 'challenges'
 
-  index: ->
+  challenges: ->
     cl = new ChallengesLayout()
-    Application.layout.content.show(cl)
+    App.layout.content.show(cl)
 
 module.exports = Router
