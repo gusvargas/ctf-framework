@@ -12,6 +12,7 @@ class ChallengeRow extends Backbone.Marionette.ItemView
 
 	events:
 		'click': 'editMe'
+		'click input[type="checkbox"]': 'check'
 
 	modelEvents:
 		'destroy': 'removeMe'
@@ -31,6 +32,9 @@ class ChallengeRow extends Backbone.Marionette.ItemView
 
 	editMe: ->
 		App.vent.trigger 'editChallenge', @model
+
+	check: (e) ->
+		e.stopPropagation()
 
 	removeMe: ->
 		# event is fired so datatables can remove the row
