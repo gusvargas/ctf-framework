@@ -11,10 +11,25 @@ input[type="text"]
 
 .new-challenge-form
 	input[type="text"], textarea
-		width: 97%
+		width: 105%
 
 	button
 		margin-top: 18px
+
+	.close-edit
+		visibility: hidden
+		float: right
+		position: relative
+		top: -13px
+		left: 8px
+		opacity: 0.5
+
+		&:hover
+			cursor: pointer
+			opacity: 1
+
+		&.show
+			visibility: visible
 
 #toolbar-container
 	margin-top: 7px

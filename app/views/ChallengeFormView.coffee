@@ -18,6 +18,7 @@ class ChallengeForm extends Backbone.Marionette.ItemView
 
   events:
     'click button': 'submit'
+    'click .close-edit': 'closeEdit'
 
   serializeData: ->
     context = {}
@@ -29,10 +30,7 @@ class ChallengeForm extends Backbone.Marionette.ItemView
     context
 
   onRender: ->
-    @ui.form
-      .find('input')
-      .first()
-      .focus()
+    @ui.name.focus()
 
   initialize: ->
     @listenTo App.vent, 'editChallenge', @editChallenge
@@ -42,6 +40,8 @@ class ChallengeForm extends Backbone.Marionette.ItemView
       @stopListening @model
 
     @model = model
+    return if model is undefined
+
     @listenTo @model, 'change', @render
 
   submit: (e) ->
@@ -60,6 +60,7 @@ class ChallengeForm extends Backbone.Marionette.ItemView
       @updateChallenge attrs
     else
       @createNewChallenge attrs
+      @resetForm()
 
   createNewChallenge: (attrs) ->
     @collection.create attrs, {wait:true}
@@ -70,5 +71,12 @@ class ChallengeForm extends Backbone.Marionette.ItemView
   editChallenge: (model) ->
     @setModel model
     @render()
+
+  closeEdit: (e) ->
+    @setModel undefined
+    @render()
+
+  resetForm: ->
+    @ui.form[0].reset()
 
 module.exports = ChallengeForm
