@@ -4,10 +4,17 @@ ChallengeForm = require 'views/ChallengeFormView'
 
 class Router extends Backbone.Router
   routes:
-    'challenges': 'challenges'
+    'challenges': 'showChallengesLayout'
+    'challenges/edit/:id': 'editChallenge'
 
-  challenges: ->
+  showChallengesLayout: ->
     cl = new ChallengesLayout()
     App.layout.content.show(cl)
+
+  editChallenge: (id) ->
+    @showChallengesLayout()
+
+    challenge = App.challenges.get(id)
+    App.vent.trigger 'editChallenge', challenge
 
 module.exports = Router

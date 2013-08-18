@@ -27,6 +27,10 @@ class Application extends Backbone.Marionette.Application
             Router = require 'lib/router'
             @router = new Router()
 
+        @addInitializer (options) =>
+            @vent.on 'editChallenge', (challenge) =>
+                @router.navigate "challenges/edit/#{challenge.get('id')}"
+
         @challenges = new Challenges
         @challenges.fetch().then =>
             @start()
