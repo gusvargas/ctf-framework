@@ -17,9 +17,6 @@ class ChallengesLayout extends Backbone.Marionette.Layout
 		table: '#challenges-container'
 		toolBar: '#toolbar-container'
 
-	initialize: ->
-		@listenTo App.vent, 'challengeTable:initialized', @setupToolbar
-
 	onRender: ->
 		@sideBar.show new ChallengeForm
 			collection: App.challenges
