@@ -6,6 +6,7 @@ class Router extends Backbone.Router
   routes:
     'challenges': 'showChallengesLayout'
     'challenges/edit/:id': 'editChallenge'
+    '*path': 'default'
 
   showChallengesLayout: ->
     cl = new ChallengesLayout()
@@ -15,6 +16,13 @@ class Router extends Backbone.Router
     @showChallengesLayout()
 
     challenge = App.challenges.get(id)
-    App.vent.trigger 'editChallenge', challenge
+    if challenge?
+      App.vent.trigger 'editChallenge', challenge
+    else
+      @navigate ''
+
+  default: (path) ->
+    @showChallengesLayout()
+    @navigate ''
 
 module.exports = Router
