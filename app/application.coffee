@@ -6,6 +6,11 @@ class Application extends Backbone.Marionette.Application
     initialize: =>
         @on 'initialize:after', (options) =>
             Backbone.history.start pushState:true
+
+            if Backbone.history.fragment is ''
+                Backbone.history.navigate 'challenges',
+                    trigger:true
+
             # Freeze the object
             Object.freeze? this
 
@@ -22,11 +27,9 @@ class Application extends Backbone.Marionette.Application
             Router = require 'lib/router'
             @router = new Router()
 
-        @addInitializer (options) =>
-            @challenges = new Challenges
-            @challenges.fetch()
-
-        @start()
+        @challenges = new Challenges
+        @challenges.fetch().then =>
+            @start()
 
 
 module.exports = new Application()
