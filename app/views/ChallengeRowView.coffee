@@ -37,8 +37,6 @@ class ChallengeRow extends Backbone.Marionette.ItemView
 		e.stopPropagation()
 
 	removeMe: ->
-		# event is fired so datatables can remove the row
-		App.vent.trigger 'removeRow', @el
 		do @close
 
 module.exports = ChallengeRow

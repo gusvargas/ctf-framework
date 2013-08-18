@@ -10,11 +10,12 @@ class ChallengesLayout extends Backbone.Marionette.Layout
 	template: template
 
 	ui:
-		toolbar: '.toolbar-container'
+		toolbar: '#toolbar-container'
 
 	regions:
 		sideBar: '#challenges-sidebar'
-		main: '#challenges-container'
+		table: '#challenges-container'
+		toolBar: '#toolbar-container'
 
 	initialize: ->
 		@listenTo App.vent, 'challengeTable:initialized', @setupToolbar
@@ -22,14 +23,9 @@ class ChallengesLayout extends Backbone.Marionette.Layout
 	onRender: ->
 		@sideBar.show new ChallengeForm
 			collection: App.challenges
-		@main.show new ChallengeTable
+		@table.show new ChallengeTable
 			collection: App.challenges
-
-	setupToolbar: ->
-		do @bindUIElements
-
-		toolbarView = new ChallengeToolbar
-		@ui.toolbar.html toolbarView.render().el
+		@toolBar.show new ChallengeToolbar
 
 module.exports = ChallengesLayout
 
