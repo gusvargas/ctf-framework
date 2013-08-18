@@ -1,4 +1,5 @@
 template = require 'views/templates/challengeForm'
+Challenge = require 'models/Challenge'
 App = require 'application'
 
 class ChallengeForm extends Backbone.Marionette.ItemView
@@ -8,6 +9,7 @@ class ChallengeForm extends Backbone.Marionette.ItemView
   ui:
     form: 'form'
     name: '#challenge-name'
+    category: '#challenge-category'
     points: '#challenge-points'
     target: '#challenge-target'
     description: '#challenge-desc'
@@ -46,14 +48,25 @@ class ChallengeForm extends Backbone.Marionette.ItemView
     e.preventDefault()
     editing = @model?
 
+    attrs =
+      name: @ui.name.val()
+      category: @ui.category.val()
+      points: @ui.points.val()
+      target: @ui.target.val()
+      description: @ui.description.val()
+      locked: @ui.locked.is(':checked')
+
     if editing
-      @model.save
-        name: @ui.name.val()
-        points: @ui.points.val()
-        target: @ui.target.val()
-        description: @ui.description.val()
-        locked: @ui.locked.is(':checked')
-        , {wait:true}
+      @updateChallenge attrs
+    else
+      @createNewChallenge attrs
+
+  createNewChallenge: (attrs) ->
+    newChallenge = new Challenge attrs
+    newChallenge.save()
+
+  updateChallenge: (attrs) ->
+    @model.save attrs, {wait:true}
 
   editChallenge: (model) ->
     @setModel model
