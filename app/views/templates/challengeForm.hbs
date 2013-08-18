@@ -1,7 +1,7 @@
 <form>
 	<fieldset>
 
-		<legend>New Challenge</legend>
+		<legend>{{#unless editing}}New Challenge{{else}}Edit Challenge{{/unless}}</legend>
 
 		<label for="challenge-name">Name</label>
 		<input type="text" id="challenge-name" value="{{name}}">
@@ -18,8 +18,8 @@
 		<label for="challenge-flag">Flag</label>
 		<input type="text" id="challenge-flag" value="{{flag}}">
 
-		<label for="challenge-status" class="checkbox">
-			<input type="checkbox" id="challenge-status" {{#if locked}}checked{{/if}}> Locked
+		<label for="challenge-locked" class="checkbox">
+			<input type="checkbox" id="challenge-locked" {{#if locked}}checked{{/if}}> Locked
 		</label>
 
 		<button class="btn btn-primary btn-block">{{#unless editing}}Create{{else}}Update{{/unless}}</button>

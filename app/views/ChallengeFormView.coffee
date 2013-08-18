@@ -7,9 +7,15 @@ class ChallengeForm extends Backbone.Marionette.ItemView
 
   ui:
     form: 'form'
+    name: '#challenge-name'
+    points: '#challenge-points'
+    target: '#challenge-target'
+    description: '#challenge-desc'
+    flag: '#challenge-flag'
+    locked: '#challenge-locked'
 
   events:
-    'click button': 'createChallenge'
+    'click button': 'submit'
 
   serializeData: ->
     context = {}
@@ -36,8 +42,18 @@ class ChallengeForm extends Backbone.Marionette.ItemView
     @model = model
     @listenTo @model, 'change', @render
 
-  createChallenge: (e) ->
+  submit: (e) ->
     e.preventDefault()
+    editing = @model?
+
+    if editing
+      @model.save
+        name: @ui.name.val()
+        points: @ui.points.val()
+        target: @ui.target.val()
+        description: @ui.description.val()
+        locked: @ui.locked.is(':checked')
+        , {wait:true}
 
   editChallenge: (model) ->
     @setModel model
