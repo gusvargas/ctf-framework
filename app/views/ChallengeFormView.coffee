@@ -62,8 +62,7 @@ class ChallengeForm extends Backbone.Marionette.ItemView
       @createNewChallenge attrs
 
   createNewChallenge: (attrs) ->
-    newChallenge = new Challenge attrs
-    newChallenge.save()
+    @collection.create attrs, {wait:true}
 
   updateChallenge: (attrs) ->
     @model.save attrs, {wait:true}

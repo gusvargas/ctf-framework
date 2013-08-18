@@ -21,6 +21,7 @@ class ChallengesLayout extends Backbone.Marionette.Layout
 
 	onRender: ->
 		@sideBar.show new ChallengeForm
+			collection: App.challenges
 		@main.show new ChallengeTable
 			collection: App.challenges
 
