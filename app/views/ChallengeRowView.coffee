@@ -31,7 +31,7 @@ class ChallengeRow extends Backbone.Marionette.ItemView
 			when 'remove' then @model.destroy()
 
 	editMe: ->
-		App.vent.trigger 'editChallenge', @model
+		App.vent.trigger 'challenges:edit', @model
 
 	check: (e) ->
 		e.stopPropagation()

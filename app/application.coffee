@@ -28,8 +28,11 @@ class Application extends Backbone.Marionette.Application
             @router = new Router()
 
         @addInitializer (options) =>
-            @vent.on 'editChallenge', (challenge) =>
+            @vent.on 'challenges:edit', (challenge) =>
                 @router.navigate "challenges/edit/#{challenge.get('id')}"
+
+            @vent.on 'challenges:edit:close', =>
+                @router.navigate 'challenges'
 
         @challenges = new Challenges
         @challenges.fetch().then =>

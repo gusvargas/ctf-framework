@@ -17,7 +17,7 @@ class Router extends Backbone.Router
 
     challenge = App.challenges.get(id)
     if challenge?
-      App.vent.trigger 'editChallenge', challenge
+      App.vent.trigger 'challenges:edit', challenge
     else
       @navigate ''
 
