@@ -24,7 +24,7 @@ class Application extends Backbone.Marionette.Application
             controller = require 'lib/controller'
 
             @router = new Router
-                controller: @controller
+                controller: controller
 
         @addInitializer (options) =>
             nv = new NavView()
