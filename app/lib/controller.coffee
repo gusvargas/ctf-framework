@@ -14,10 +14,10 @@ Controller =
     if challenge?
       App.vent.trigger 'challenges:edit', challenge
     else
-      @navigate ''
+      App.vent.trigger 'challenges'
 
   default: (path) ->
     @showChallengesLayout()
-    @navigate ''
+    App.vent.trigger 'challenges'
 
 module.exports = Controller
