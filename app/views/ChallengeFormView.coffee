@@ -67,6 +67,7 @@ class ChallengeForm extends Backbone.Marionette.ItemView
 
   updateChallenge: (attrs) ->
     @model.save attrs, {wait:true}
+    @closeEdit()
 
   editChallenge: (model) ->
     @setModel model
