@@ -4,7 +4,7 @@ class Challenges extends Backbone.Collection
   model: Challenge
   url: 'http://localhost:1337/challenges'
 
-  _sortAttribute: 'name'
+  _sortAttribute: 'points'
   _sortDirection: 1
 
   sortBy: (attr) ->
