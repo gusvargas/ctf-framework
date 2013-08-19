@@ -19,13 +19,16 @@ class Application extends Backbone.Marionette.Application
             @layout.render()
 
         @addInitializer (options) =>
-            nv = new NavView()
-            @layout.nav.show nv
-
-        @addInitializer (options) =>
             # Instantiate the router
             Router = require 'lib/router'
-            @router = new Router()
+            controller = require 'lib/controller'
+
+            @router = new Router
+                controller: @controller
+
+        @addInitializer (options) =>
+            nv = new NavView()
+            @layout.nav.show nv
 
         @addInitializer (options) =>
             @vent.on 'challenges:edit', (challenge) =>

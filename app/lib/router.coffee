@@ -1,28 +1,7 @@
-App = require 'application'
-ChallengesLayout = require 'views/ChallengesLayout'
-ChallengeForm = require 'views/ChallengeFormView'
-
-class Router extends Backbone.Router
-  routes:
+class Router extends Backbone.Marionette.AppRouter
+  appRoutes:
     'challenges': 'showChallengesLayout'
     'challenges/edit/:id': 'editChallenge'
     '*path': 'default'
-
-  showChallengesLayout: ->
-    cl = new ChallengesLayout()
-    App.layout.content.show(cl)
-
-  editChallenge: (id) ->
-    @showChallengesLayout()
-
-    challenge = App.challenges.get(id)
-    if challenge?
-      App.vent.trigger 'challenges:edit', challenge
-    else
-      @navigate ''
-
-  default: (path) ->
-    @showChallengesLayout()
-    @navigate ''
 
 module.exports = Router
