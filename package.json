@@ -4,10 +4,6 @@
   "description": "Admin interface for a CTF framework",
   "version": "0.0.1",
   "homepage": "",
-  "repository": {
-    "type": "git",
-    "url": "git@github.com/simbco/brunch-with-marionette"
-  },
   "engines": {
     "node": "0.8.x",
     "npm": "1.1.x"
@@ -28,7 +24,6 @@
     "mocha": "0.14.0",
     "expect.js": "0.1.2"
   },
-  "main": "index.js",
   "directories": {
     "test": "test"
   },
