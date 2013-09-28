@@ -32,9 +32,6 @@ class ChallengeForm extends Backbone.Marionette.ItemView
   onRender: ->
     @ui.name.focus()
 
-  initialize: ->
-    @listenTo App.vent, 'challenges:edit', @editChallenge
-
   setModel: (model) ->
     if @model?
       @stopListening @model

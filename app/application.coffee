@@ -30,16 +30,6 @@ class Application extends Backbone.Marionette.Application
             nv = new NavView()
             @layout.nav.show nv
 
-        @addInitializer (options) =>
-            @vent.on 'challenges', =>
-                @router.navigate 'challenges'
-
-            @vent.on 'challenges:edit', (challenge) =>
-                @router.navigate "challenges/edit/#{challenge.get('id')}"
-
-            @vent.on 'challenges:edit:close', =>
-                @router.navigate 'challenges'
-
         @challenges = new Challenges
         @challenges.fetch().then =>
             @start()

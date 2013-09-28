@@ -1,18 +1,26 @@
 template = require 'views/templates/nav'
 
 class NavView extends Backbone.Marionette.ItemView
-	template: template
-	className: 'navbar-inner'
+  template: template
+  className: 'navbar-inner'
 
-	events:
-		'click .nav li': 'navigate'
+  events:
+    'click a': 'navigate'
 
-	ui:
-		navItems: '.nav li'
+  ui:
+    navItems: '.nav li'
 
-	navigate: (e) ->
-		@ui.navItems.removeClass 'active'
-		$(e.currentTarget).addClass 'active'
+  navigate: (e) ->
+    e.preventDefault()
+
+    App = require 'application'
+    $target = $(e.currentTarget)
+
+    @ui.navItems.removeClass 'active'
+    $target.parent().addClass 'active'
+
+    location = $target.data 'location'
+    App.vent.trigger location
 
 
 module.exports = NavView
