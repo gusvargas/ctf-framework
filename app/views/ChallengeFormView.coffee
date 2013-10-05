@@ -20,6 +20,9 @@ class ChallengeForm extends Backbone.Marionette.ItemView
     'click button': 'submit'
     'click .close-edit': 'closeEdit'
 
+  modelEvents:
+    'change': 'render'
+
   serializeData: ->
     context = {}
     editing = @model?
