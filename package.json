@@ -1,7 +1,7 @@
 {
   "author": "Gustavo Vargas",
-  "name": "CTF-Admin",
-  "description": "Admin interface for a CTF framework",
+  "name": "CTF-Framework",
+  "description": "Framework for deploying jeopardy-style CTFs",
   "version": "0.0.1",
   "homepage": "",
   "engines": {
