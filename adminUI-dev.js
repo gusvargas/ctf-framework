@@ -1,7 +1,7 @@
-var sys = require('sys');
+var sys = require('util');
 var spawn = require('child_process').spawn;
 
-var adminBrunch = spawn('/usr/local/share/npm/bin/brunch', ['w'], {
+var adminBrunch = spawn('/usr/bin/brunch', ['w'], {
   cwd: './static/adminUI/'
 });
 

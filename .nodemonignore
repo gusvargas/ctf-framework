@@ -1,3 +1,4 @@
 /adminUI/*
+/.vagrant/*
 .git/
 .gitignore
