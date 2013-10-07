@@ -1,1 +1,1 @@
-CTF Admin UI
+CTF Framework
