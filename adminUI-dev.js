@@ -2,7 +2,7 @@ var sys = require('sys');
 var spawn = require('child_process').spawn;
 
 var adminBrunch = spawn('/usr/local/share/npm/bin/brunch', ['w'], {
-  cwd: './adminUI/'
+  cwd: './static/adminUI/'
 });
 
 adminBrunch.stdout.on('data', function(data) {
