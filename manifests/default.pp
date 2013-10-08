@@ -26,6 +26,18 @@ class nodejs-npm {
     command => 'sudo apt-get install -y --force-yes nodejs',
     require => Exec['apt-update'],
   }
+
+  exec { 'install-server-deps':
+    command => 'sudo npm install',
+    cwd => '/vagrant',
+    require => Exec['install-nodejs'],
+  }
+
+  exec { 'install-adminUI-deps':
+    command => 'sudo npm install',
+    cwd => '/vagrant/static/adminUI',
+    require => Exec['install-nodejs'],
+  }
 }
 
 class devtools {
