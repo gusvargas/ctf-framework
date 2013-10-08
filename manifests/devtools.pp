@@ -1,5 +1,5 @@
 class devtools {
-  require nodejs-npm
+  require nodejs_npm
 
   exec { 'install-brunch':
     command => 'sudo npm install -g brunch',
