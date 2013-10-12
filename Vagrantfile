@@ -22,6 +22,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     db.vm.box = "precise32"
     db.vm.box_url = "http://files.vagrantup.com/precise32.box"
 
+    db.vm.provision :shell, :inline => "apt-get update --fix-missing"
     db.vm.provision :puppet do |puppet|
       puppet.manifests_path = "puppet/manifests"
       puppet.module_path    = "puppet/modules"
