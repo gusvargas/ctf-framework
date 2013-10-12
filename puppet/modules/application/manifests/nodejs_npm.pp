@@ -1,4 +1,4 @@
-class nodejs_npm {
+class application::nodejs_npm {
   exec { "initial-update":
     command => 'sudo apt-get update',
   }
