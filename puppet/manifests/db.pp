@@ -1,1 +1,1 @@
-include '::mysql::server'
+include ::mysql::server
