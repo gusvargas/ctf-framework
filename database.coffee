@@ -7,9 +7,7 @@ pool = mysql.createPool
   database: 'ctf'
   connectionLimit: 10
 
-exports.getAllChallenges = (callback) ->
-  sql = 'SELECT * FROM Challenges'
-
+executeQuery = (query, callback) ->
   pool.getConnection (err, connection) ->
     if err
       console.log err
@@ -22,3 +20,7 @@ exports.getAllChallenges = (callback) ->
         callback true
 
       callback false, results
+
+exports.getAllChallenges = (callback) ->
+  sql = 'SELECT * FROM Challenges'
+  executeQuery sql, callback
