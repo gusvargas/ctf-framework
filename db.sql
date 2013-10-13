@@ -15,8 +15,9 @@ CREATE TABLE IF NOT EXISTS Challenges (
     category VARCHAR(32) NOT NULL,
     description VARCHAR(512) NULL,
     points INT NOT NULL,
-    target VARCHAR(128),
-    flag VARCHAR(64),
+    target VARCHAR(128) NOT NULL,
+    flag VARCHAR(64) NOT NULL,
+    locked BOOLEAN NOT NULL,
 
     PRIMARY KEY(chal_id)
 );
