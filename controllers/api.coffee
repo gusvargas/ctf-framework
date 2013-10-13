@@ -24,7 +24,7 @@ API =
       res.json results
 
   createChallenge: (req, res) ->
-    attrs = ['name', 'category', 'points', 'target', 'description', 'locked']
+    attrs = ['name', 'category', 'points', 'target', 'description', 'flag', 'locked']
     challenge = _.pick req.body, attrs
 
     unless _.keys(challenge).length is attrs.length
@@ -36,6 +36,7 @@ API =
         res.send 500, 'Server Error'
         return
 
+      challenge.id = results.insertId
       res.json challenge
 
 
