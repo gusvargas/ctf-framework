@@ -14,7 +14,7 @@ executeQuery = (query, callback) ->
       callback true
       return
 
-    connection.query sql, (err, results) ->
+    connection.query query, (err, results) ->
       if err
         console.log "Error running query '#{sql}': ", err
         callback true
