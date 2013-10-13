@@ -60,6 +60,10 @@ API =
         res.send 500, 'Server Error'
         return
 
+      if results.changedRows is 0
+        res.send 404, 'Not Found'
+        return
+
       res.json updatedChallenge
 
   deleteChallenge: (req, res) ->
@@ -71,7 +75,7 @@ API =
         return
 
       if results.affectedRows is 0
-        res.send 404, 'Not found'
+        res.send 404, 'Not Found'
         return
 
       res.send 200
