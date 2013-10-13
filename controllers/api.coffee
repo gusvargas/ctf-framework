@@ -62,5 +62,19 @@ API =
 
       res.json updatedChallenge
 
+  deleteChallenge: (req, res) ->
+    id = req.params.id
+
+    db.deleteChallenge id, (err, results) ->
+      if err
+        res.send 500, 'Server Error'
+        return
+
+      if results.affectedRows is 0
+        res.send 404, 'Not found'
+        return
+
+      res.send 200
+
 
 module.exports = API

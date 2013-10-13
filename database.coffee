@@ -41,3 +41,7 @@ exports.updateChallenge = (id, challenge, callback) ->
 
   query = 'UPDATE Challenges SET ? WHERE id = ?'
   executeQuery query, [attrs, id], callback
+
+exports.deleteChallenge = (id, callback) ->
+  query = 'DELETE FROM Challenges WHERE id = ?'
+  executeQuery query, [id], callback
