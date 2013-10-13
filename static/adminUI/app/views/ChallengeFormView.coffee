@@ -54,6 +54,7 @@ class ChallengeForm extends Backbone.Marionette.ItemView
       points: @ui.points.val()
       target: @ui.target.val()
       description: @ui.description.val()
+      flag: @ui.flag.val()
       locked: @ui.locked.is(':checked')
 
     if editing
