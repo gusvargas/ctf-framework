@@ -1,11 +1,6 @@
 class application::nodejs_npm {
-  exec { "initial-update":
-    command => 'sudo apt-get update',
-  }
-
   package { 'python-software-properties':
     ensure => 'installed',
-    require => Exec['initial-update'],
   }
 
   exec { 'add-apt-repo':
