@@ -2,7 +2,7 @@ Challenge = require 'models/Challenge'
 
 class Challenges extends Backbone.Collection
   model: Challenge
-  url: 'http://localhost:1337/challenges'
+  url: '/api/challenges'
 
   _sortAttribute: 'points'
   _sortDirection: 1
