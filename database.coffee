@@ -10,13 +10,13 @@ pool = mysql.createPool
 executeQuery = (query, callback) ->
   pool.getConnection (err, connection) ->
     if err
-      console.log err
+      console.log 'Error aquiring connection from pool: ', err
       callback true
       return
 
     connection.query sql, (err, results) ->
       if err
-        console.log err
+        console.log "Error running query '#{sql}': ", err
         callback true
 
       callback false, results
