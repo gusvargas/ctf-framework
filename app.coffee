@@ -12,7 +12,7 @@ app.configure ->
   app.use '/stylesheets', express.static "#{__dirname}/static/adminUI/public/stylesheets"
   app.use '/img', express.static "#{__dirname}/static/adminUI/public/img"
 
-app.get '/admin', mainController.serveAdminUI
+app.get /^\/admin(\/\w+)*$/, mainController.serveAdminUI
 
 app.get '/api/challenges', apiController.getAllChallenges
 app.get '/api/challenges/:id', apiController.getChallenge
