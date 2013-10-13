@@ -5,7 +5,9 @@ Challenges = require 'collections/Challenges'
 class Application extends Backbone.Marionette.Application
     initialize: =>
         @on 'initialize:after', (options) =>
-            Backbone.history.start pushState:true
+            Backbone.history.start
+                root: '/admin/'
+                pushState:true
 
             if Backbone.history.fragment is ''
                 Backbone.history.navigate 'challenges',
