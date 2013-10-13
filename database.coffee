@@ -1,4 +1,5 @@
 mysql = require 'mysql'
+utils = require './utils'
 _ = require 'underscore'
 
 pool = mysql.createPool
@@ -21,6 +22,7 @@ executeQuery = (query, params=[], callback) ->
       if err
         console.log "Error running query '#{query}': ", err
         callback true
+        return
 
       callback false, results
 
@@ -34,7 +36,14 @@ exports.getChallenge = (id, callback) ->
 
 exports.createChallenge = (challenge, callback) ->
   query = 'INSERT INTO Challenges SET ?'
-  executeQuery query, challenge, callback
+
+  utils.bcryptAttribute challenge, 'flag', (err, safeChallenge) ->
+    if err
+      console.log 'Error hashing flag'
+      callback true
+      return
+
+    executeQuery query, safeChallenge, callback
 
 exports.updateChallenge = (id, challenge, callback) ->
   attrs = _.omit challenge, 'id'
