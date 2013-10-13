@@ -15,5 +15,7 @@ app.configure ->
 app.get '/admin', mainController.serveAdminUI
 
 app.get '/api/challenges', apiController.getAllChallenges
+app.get '/api/challenges/:id', apiController.getChallenge
+app.post '/api/challenges', apiController.createChallenge
 
 app.listen 1337
