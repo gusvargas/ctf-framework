@@ -20,11 +20,8 @@ class Challenges extends Backbone.Collection
     a = a.get(@_sortAttribute).toString().toLowerCase()
     b = b.get(@_sortAttribute).toString().toLowerCase()
 
-    return 0 if a is b
-
-    if @_sortDirection is 1
-      return a > b ? 1 : -1
-
-    a < b ? 1 : -1
+    return -1 * @_sortDirection if a < b
+    return 1 * @_sortDirection if a > b
+    return 0
 
 module.exports = Challenges
