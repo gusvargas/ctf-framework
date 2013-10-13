@@ -5,8 +5,8 @@ class application::devtools {
     command => 'sudo npm install -g brunch',
   }
 
-  exec { 'install-nodemon':
-    command => 'sudo npm install -g nodemon',
+  exec { 'install-supervisor':
+    command => 'sudo npm install -g supervisor',
   }
 }
 
