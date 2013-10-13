@@ -1,6 +1,13 @@
+db = require '../database'
+
 API =
   getAllChallenges: (req, res) ->
-    res.send('hello')
+    db.getAllChallenges (err, results) ->
+      if err
+        res.send 500, 'fuck'
+        return
+
+      res.send results
 
 
 module.exports = API
