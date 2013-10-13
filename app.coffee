@@ -17,5 +17,6 @@ app.get /^\/admin(\/\w+)*$/, mainController.serveAdminUI
 app.get '/api/challenges', apiController.getAllChallenges
 app.get '/api/challenges/:id', apiController.getChallenge
 app.post '/api/challenges', apiController.createChallenge
+app.put '/api/challenges/:id', apiController.updateChallenge
 
 app.listen 1337

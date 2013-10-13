@@ -1,4 +1,5 @@
 mysql = require 'mysql'
+_ = require 'underscore'
 
 pool = mysql.createPool
   host: 'localhost'
@@ -15,6 +16,8 @@ executeQuery = (query, params=[], callback) ->
       return
 
     connection.query query, params, (err, results) ->
+      connection.release()
+
       if err
         console.log "Error running query '#{query}': ", err
         callback true
@@ -26,9 +29,15 @@ exports.getAllChallenges = (callback) ->
   executeQuery query, callback
 
 exports.getChallenge = (id, callback) ->
-  query = "SELECT * FROM Challenges WHERE chal_id = ?"
+  query = "SELECT * FROM Challenges WHERE id = ?"
   executeQuery query, [id], callback
 
 exports.createChallenge = (challenge, callback) ->
   query = 'INSERT INTO Challenges SET ?'
   executeQuery query, challenge, callback
+
+exports.updateChallenge = (id, challenge, callback) ->
+  attrs = _.omit challenge, 'id'
+
+  query = 'UPDATE Challenges SET ? WHERE id = ?'
+  executeQuery query, [attrs, id], callback
