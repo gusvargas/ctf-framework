@@ -1,4 +1,4 @@
 class Challenge extends Backbone.Model
-	urlRoot: "http://localhost:1337/challenges/"
+	urlRoot: "/api/challenges/"
 
 module.exports = Challenge
