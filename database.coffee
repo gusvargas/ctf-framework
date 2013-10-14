@@ -46,10 +46,16 @@ exports.createChallenge = (challenge, callback) ->
     executeQuery query, safeChallenge, callback
 
 exports.updateChallenge = (id, challenge, callback) ->
+  query = 'UPDATE Challenges SET ? WHERE id = ?'
   attrs = _.omit challenge, 'id'
 
-  query = 'UPDATE Challenges SET ? WHERE id = ?'
-  executeQuery query, [attrs, id], callback
+  utils.bcryptAttribute attrs, 'flag', (err, safeChallenge) ->
+    if err
+      console.log 'Error hashing flag'
+      callback true
+      return
+
+    executeQuery query, [safeChallenge, id], callback
 
 exports.deleteChallenge = (id, callback) ->
   query = 'DELETE FROM Challenges WHERE id = ?'
