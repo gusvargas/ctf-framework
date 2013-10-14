@@ -66,7 +66,7 @@ API =
         res.send 404, 'Not Found'
         return
 
-      res.json updatedChallenge
+      res.json _.first results.params
 
   deleteChallenge: (req, res) ->
     id = req.params.id

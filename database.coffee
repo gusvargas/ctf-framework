@@ -24,7 +24,8 @@ executeQuery = (query, params=[], callback) ->
         callback true
         return
 
-      callback false, results
+      callback false, _.extend {}, results,
+        params: params
 
 exports.getAllChallenges = (callback) ->
   query = 'SELECT * FROM Challenges'
