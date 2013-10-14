@@ -63,7 +63,7 @@ API =
         res.send 500, 'Server Error'
         return
 
-      if results.changedRows is 0
+      if results.affected is 0
         res.send 404, 'Not Found'
         return
 
