@@ -26,9 +26,13 @@ class ChallengeRow extends Backbone.Marionette.ItemView
 		selected = @ui.checkbox.is ':checked'
 		return unless selected
 
+		opts =
+			wait: true
+			patch: true
+
 		switch action
-			when 'lock' then @model.save locked:true, patch:true
-			when 'unlock' then @model.save locked:false, patch:true
+			when 'lock' then @model.save locked:1, opts
+			when 'unlock' then @model.save locked:0, opts
 			when 'remove' then @model.destroy()
 
 	matchSearch: (searchTerm) ->
