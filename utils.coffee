@@ -1,6 +1,10 @@
 bcrypt = require 'bcrypt'
 
 exports.bcryptAttribute = (obj, key, callback) ->
+  if key not of obj
+    callback false, obj
+    return
+
   value = obj[key]
 
   bcrypt.genSalt (err, salt) ->

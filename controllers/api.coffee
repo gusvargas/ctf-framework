@@ -3,10 +3,13 @@ _ = require 'underscore'
 
 validateChallenge = (challenge) ->
   attrs = ['name', 'category', 'points', 'target', 'description', 'flag', 'locked']
+  optional = ['flag']
+
   challenge = _.pick challenge, attrs
 
-  unless _.keys(challenge).length is attrs.length
-    return false
+  for attr in attrs
+    if not _.has(challenge, attr) and attr not in optional
+      return false
 
   challenge
 
