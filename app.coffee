@@ -14,10 +14,11 @@ app.configure ->
 
 app.get /^\/admin(\/\w+)*$/, mainController.serveAdminUI
 
-app.get '/api/challenges', apiController.getAllChallenges
-app.get '/api/challenges/:id', apiController.getChallenge
-app.post '/api/challenges', apiController.createChallenge
-app.put '/api/challenges/:id', apiController.updateChallenge
-app.delete '/api/challenges/:id', apiController.deleteChallenge
+app.get     '/api/challenges',      apiController.getAllChallenges
+app.get     '/api/challenges/:id',  apiController.getChallenge
+app.post    '/api/challenges',      apiController.createChallenge
+app.put     '/api/challenges/:id',  apiController.updateChallenge
+app.patch   '/api/challenges/:id',  apiController.updateChallenge
+app.delete  '/api/challenges/:id',  apiController.deleteChallenge
 
 app.listen 1337

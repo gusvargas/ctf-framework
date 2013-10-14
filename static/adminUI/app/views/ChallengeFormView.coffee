@@ -51,13 +51,17 @@ class ChallengeForm extends Backbone.Marionette.ItemView
     attrs =
       name: @ui.name.val()
       category: @ui.category.val()
-      points: @ui.points.val()
+      points: parseInt @ui.points.val()
       target: @ui.target.val()
       description: @ui.description.val()
       flag: @ui.flag.val()
-      locked: @ui.locked.is(':checked')
+      locked: if @ui.locked.is(':checked') then 1 else 0
 
     if editing
+      for attr, val of attrs
+        if val is @model.get attr
+          delete attrs[attr]
+
       @updateChallenge attrs
     else
       @createNewChallenge attrs
@@ -67,7 +71,11 @@ class ChallengeForm extends Backbone.Marionette.ItemView
     @collection.create attrs, {wait:true}
 
   updateChallenge: (attrs) ->
-    @model.save attrs, {wait:true}
+    unless _.isEmpty attrs
+      @model.save attrs,
+        wait: true
+        patch: true
+
     @closeEdit()
 
   editChallenge: (model) ->
