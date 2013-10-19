@@ -10,12 +10,13 @@ templateOpts =
   defaultLayout: false
   extname: '.hbs'
 
-app.engine '.hbs', hbs templateOpts
-app.set 'view engine', '.hbs'
-
 app.configure ->
+  app.engine '.hbs', hbs templateOpts
+  app.set 'view engine', '.hbs'
+
   app.use express.compress()
   app.use express.bodyParser()
+
   app.use '/javascripts', express.static "#{__dirname}/static/adminUI/public/javascripts"
   app.use '/stylesheets', express.static "#{__dirname}/static/adminUI/public/stylesheets"
   app.use '/img', express.static "#{__dirname}/static/adminUI/public/img"
