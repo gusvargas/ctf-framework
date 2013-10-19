@@ -15,7 +15,8 @@
     "coffee-script": "~1.6.3",
     "mysql": "~2.0.0-alpha9",
     "underscore": "~1.5.2",
-    "bcrypt": "~0.7.7"
+    "bcrypt": "~0.7.7",
+    "express3-handlebars": "~0.5.0"
   },
   "devDependencies": {
     "nodemon": "~0.7.10"

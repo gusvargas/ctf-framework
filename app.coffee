@@ -1,9 +1,17 @@
 express = require 'express'
+hbs = require 'express3-handlebars'
 
 mainController = require './controllers/main'
 apiController = require './controllers/api'
 
 app = express()
+
+templateOpts =
+  defaultLayout: false
+  extname: '.hbs'
+
+app.engine '.hbs', hbs templateOpts
+app.set 'view engine', '.hbs'
 
 app.configure ->
   app.use express.compress()
@@ -12,8 +20,11 @@ app.configure ->
   app.use '/stylesheets', express.static "#{__dirname}/static/adminUI/public/stylesheets"
   app.use '/img', express.static "#{__dirname}/static/adminUI/public/img"
 
+# User routes
+app.get '/', mainController.scoreboard
 app.get /^\/admin(\/\w+)*$/, mainController.serveAdminUI
 
+# API routes
 app.get     '/api/challenges',      apiController.getAllChallenges
 app.get     '/api/challenges/:id',  apiController.getChallenge
 app.post    '/api/challenges',      apiController.createChallenge
