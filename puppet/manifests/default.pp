@@ -22,7 +22,7 @@ mysql::db { 'ctf':
 }
 
 exec { 'create_tables':
-  command   => "mysql -u root --password='${ROOT_PASSWORD}' < /vagrant/db.sql",
+  command   => "mysql -u root --password='${ROOT_PASSWORD}' < /vagrant/schema.sql",
   path      => '/usr/bin/',
   require   => Mysql_database['ctf'],
 }
