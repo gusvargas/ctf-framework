@@ -1,4 +1,5 @@
 db = require '../database'
+utils = require '../utils'
 _ = require 'underscore'
 
 validateChallenge = (challenge, strict=false) ->

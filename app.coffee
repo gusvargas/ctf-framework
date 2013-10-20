@@ -1,6 +1,8 @@
 express = require 'express'
 hbs = require 'express3-handlebars'
+flash = require 'connect-flash'
 
+auth = require './auth'
 mainController = require './controllers/main'
 apiController = require './controllers/api'
 
@@ -16,16 +18,21 @@ app.configure ->
 
   app.use express.compress()
   app.use express.bodyParser()
+  app.use express.cookieParser()
+  app.use express.session secret: 'secret'
+  app.use flash()
+  app.use auth.passport.initialize()
+  app.use auth.passport.session()
 
   app.use '/javascripts', express.static "#{__dirname}/static/adminUI/public/javascripts"
   app.use '/stylesheets', express.static "#{__dirname}/static/adminUI/public/stylesheets"
   app.use '/img', express.static "#{__dirname}/static/adminUI/public/img"
 
 # User routes
-app.get '/', mainController.scoreboard
+app.get '/', auth.required, mainController.scoreboard
 app.get '/login', mainController.showLogin
-app.post '/login', mainController.processLogin
-app.get /^\/admin(\/\w+)*$/, mainController.serveAdminUI
+app.post '/login', auth.process
+app.get /^\/admin(\/\w+)*$/, auth.required, mainController.serveAdminUI
 
 # API routes
 app.get     '/api/challenges',      apiController.getAllChallenges

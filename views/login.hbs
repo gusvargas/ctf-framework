@@ -11,10 +11,17 @@
 </head>
 <body>
   <h1>Login</h1>
-  <form method="post">
+
+  <div class="error'">
+  {{#error}}
+    <p>{{this}}</p>
+  {{/error}}
+  </div>
+
+  <form action="/login" method="post">
     <div>
       <label for="team">Team</label>
-      <input type="text" id="team" name="name">
+      <input type="text" id="team" name="team">
     </div>
     <div>
       <label for="password">Password</label>

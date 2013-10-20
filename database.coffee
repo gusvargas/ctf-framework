@@ -24,8 +24,15 @@ executeQuery = (query, params=[], callback) ->
         callback true
         return
 
-      callback false, _.extend {}, results,
-        params: params
+      callback false, results
+
+exports.checkCredentials = (team, password, callback) ->
+  query = 'SELECT * FROM Teams WHERE name = ? AND password = ?'
+  executeQuery query, [team, password], callback
+
+exports.getUserById = (id, callback) ->
+  query = 'SELECT * FROM Teams WHERE id = ?'
+  executeQuery query, [id], callback
 
 exports.getAllChallenges = (callback) ->
   query = 'SELECT * FROM Challenges'

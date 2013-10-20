@@ -2,9 +2,7 @@ db = require '../database'
 
 Controller =
   showLogin: (req, res) ->
-    res.render 'login'
-
-  processLogin: (req, res) ->
+    res.render 'login', req.flash()
 
   scoreboard: (req, res) ->
     db.getAllChallenges (err, challenges) ->
