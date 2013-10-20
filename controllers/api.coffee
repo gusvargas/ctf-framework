@@ -41,13 +41,19 @@ API =
       res.send 400, 'Bad Request'
       return
 
-    db.createChallenge challenge, (err, results) ->
+    utils.bcryptAttribute challenge, 'flag', (err, safeChallenge) ->
       if err
-        res.send 500, 'Server Error'
+        console.log 'Error hashing flag'
+        callback true
         return
 
-      challenge.id = results.insertId
-      res.json challenge
+      db.createChallenge safeChallenge, (err, results) ->
+        if err
+          res.send 500, 'Server Error'
+          return
+
+        challenge.id = results.insertId
+        res.json challenge
 
   updateChallenge: (req, res) ->
     id = req.params.id
@@ -57,16 +63,23 @@ API =
       res.send 400, 'Bad Request'
       return
 
-    db.updateChallenge id, updatedChallenge, (err, results) ->
+    updatedChallenge = _.omit updatedChallenge, 'id'
+    utils.bcryptAttribute updatedChallenge, 'flag', (err, safeChallenge) ->
       if err
-        res.send 500, 'Server Error'
+        console.log 'Error hashing flag'
+        callback true
         return
 
-      if results.affected is 0
-        res.send 404, 'Not Found'
-        return
+      db.updateChallenge id, safeChallenge, (err, results) ->
+        if err
+          res.send 500, 'Server Error'
+          return
 
-      res.json _.first results.params
+        if results.affected is 0
+          res.send 404, 'Not Found'
+          return
+
+        res.json safeChallenge
 
   deleteChallenge: (req, res) ->
     id = req.params.id
