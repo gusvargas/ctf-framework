@@ -1,6 +1,11 @@
 db = require '../database'
 
 Controller =
+  showLogin: (req, res) ->
+    res.render 'login'
+
+  processLogin: (req, res) ->
+
   scoreboard: (req, res) ->
     db.getAllChallenges (err, challenges) ->
       res.render 'default',

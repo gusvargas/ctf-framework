@@ -23,6 +23,8 @@ app.configure ->
 
 # User routes
 app.get '/', mainController.scoreboard
+app.get '/login', mainController.showLogin
+app.post '/login', mainController.processLogin
 app.get /^\/admin(\/\w+)*$/, mainController.serveAdminUI
 
 # API routes
