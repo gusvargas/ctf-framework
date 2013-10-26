@@ -2,17 +2,6 @@ db = require '../database'
 utils = require '../utils'
 _ = require 'underscore'
 
-validateChallenge = (challenge, strict=false) ->
-  attrs = ['name', 'category', 'points', 'target', 'description', 'flag', 'locked']
-
-  challenge = _.pick challenge, attrs
-
-  if strict
-    unless _.keys(challenge).length is attrs.length
-      return false
-
-  challenge
-
 API =
   getAllChallenges: (req, res) ->
     db.getAllChallenges (err, results) ->
@@ -36,7 +25,7 @@ API =
       res.json results
 
   createChallenge: (req, res) ->
-    challenge = validateChallenge req.body, true
+    challenge = utils.validateChallenge req.body, true
 
     unless challenge
       res.send 400, 'Bad Request'
@@ -58,7 +47,7 @@ API =
 
   updateChallenge: (req, res) ->
     id = req.params.id
-    updatedChallenge = validateChallenge req.body
+    updatedChallenge = utils.validateChallenge req.body
 
     unless updatedChallenge
       res.send 400, 'Bad Request'

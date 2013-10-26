@@ -21,16 +21,26 @@ executeQuery = (query, params=[], callback) ->
 
       if err
         console.log "Error running query '#{query}': ", err
-        callback true
+        callback err
         return
 
       callback false, results
 
-exports.checkCredentials = (team, password, callback) ->
-  query = 'SELECT * FROM Teams WHERE name = ? AND password = ?'
-  executeQuery query, [team, password], callback
+exports.getTeamByName = (team, callback) ->
+  query = 'SELECT * FROM Teams WHERE name = ?'
+  executeQuery query, [team], callback
 
-exports.getUserById = (id, callback) ->
+exports.createTeam = (team, callback) ->
+  query = 'INSERT INTO Teams SET ?'
+  utils.bcryptAttribute team, 'password', (err, safeTeam) ->
+    if err
+      console.log 'Error hashing team password'
+      callback err
+      return
+
+    executeQuery query, team, callback
+
+exports.getTeamById = (id, callback) ->
   query = 'SELECT * FROM Teams WHERE id = ?'
   executeQuery query, [id], callback
 

@@ -1,4 +1,24 @@
+_ = require 'underscore'
 bcrypt = require 'bcrypt'
+
+validateObj = (obj, attrs, strict=false) ->
+  obj = _.pick obj, attrs
+
+  if strict
+    unless _.keys(challenges).length is attrs.length
+      return false
+
+  challenge
+
+exports.validateChallenge = (challenge, strict=false) ->
+  attrs = ['name', 'category', 'points', 'target', 'description', 'flag', 'locked']
+
+  validateObj challenge, attrs, strict
+
+exports.validateTeam = (team, strict=false) ->
+  attrs = ['name', 'email', 'password']
+
+  validateObj team, attrs, strict
 
 exports.bcryptAttribute = (obj, key, callback) ->
   if key not of obj

@@ -3,7 +3,7 @@ USE ctf;
 CREATE TABLE IF NOT EXISTS Teams (
     id INT NOT NULL AUTO_INCREMENT,
     name VARCHAR(32) UNIQUE,
-    password VARCHAR(40),
+    password VARCHAR(64),
     email VARCHAR(64),
 
     PRIMARY KEY(id)

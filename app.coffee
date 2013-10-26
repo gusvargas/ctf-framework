@@ -32,6 +32,8 @@ app.configure ->
 app.get '/', auth.required, mainController.scoreboard
 app.get '/login', mainController.showLogin
 app.post '/login', auth.process
+app.get '/register', mainController.showRegister
+app.post '/register', mainController.processRegister
 app.get /^\/admin(\/\w+)*$/, auth.required, mainController.serveAdminUI
 
 # API routes
