@@ -5,7 +5,7 @@ validateObj = (obj, attrs, strict=false) ->
   obj = _.pick obj, attrs
 
   if strict
-    unless _.keys(challenges).length is attrs.length
+    unless _.keys(obj).length is attrs.length
       return false
 
   challenge
