@@ -8,7 +8,7 @@ validateObj = (obj, attrs, strict=false) ->
     unless _.keys(obj).length is attrs.length
       return false
 
-  challenge
+  obj
 
 exports.validateChallenge = (challenge, strict=false) ->
   attrs = ['name', 'category', 'points', 'target', 'description', 'flag', 'locked']
