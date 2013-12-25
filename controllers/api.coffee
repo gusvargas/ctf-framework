@@ -34,7 +34,6 @@ API =
     utils.bcryptAttribute challenge, 'flag', (err, safeChallenge) ->
       if err
         console.log 'Error hashing flag'
-        callback true
         return
 
       db.createChallenge safeChallenge, (err, results) ->
@@ -57,7 +56,6 @@ API =
     utils.bcryptAttribute updatedChallenge, 'flag', (err, safeChallenge) ->
       if err
         console.log 'Error hashing flag'
-        callback true
         return
 
       db.updateChallenge id, safeChallenge, (err, results) ->
