@@ -5,6 +5,7 @@ CREATE TABLE IF NOT EXISTS Teams (
     name VARCHAR(32) UNIQUE,
     password VARCHAR(64),
     email VARCHAR(64),
+    admin BOOLEAN NOT NULL DEFAULT 0,
 
     PRIMARY KEY(id)
 );

@@ -21,7 +21,7 @@ mysql::db { 'ctf':
   grant     => ['SELECT', 'UPDATE', 'INSERT', 'DELETE'],
 }
 
-exec { 'create_tables':
+exec { 'create-tables':
   command   => "mysql -u root --password='${ROOT_PASSWORD}' < /vagrant/schema.sql",
   path      => '/usr/bin/',
   require   => Mysql_database['ctf'],
