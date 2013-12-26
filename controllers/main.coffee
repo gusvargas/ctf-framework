@@ -4,6 +4,10 @@ Controller =
   showLogin: (req, res) ->
     res.render 'login', req.flash()
 
+  logout: (req, res) ->
+    req.logout()
+    res.redirect('/login')
+
   showRegister: (req, res) ->
     res.render 'register', req.flash()
 

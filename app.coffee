@@ -31,6 +31,7 @@ app.configure ->
 # User routes
 app.get '/', auth.required, mainController.scoreboard
 app.get '/login', mainController.showLogin
+app.get '/logout', mainController.logout
 app.post '/login', auth.process
 app.get '/register', mainController.showRegister
 app.post '/register', mainController.processRegister
