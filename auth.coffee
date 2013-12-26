@@ -27,11 +27,10 @@ passport.use new LocalStrategy
           message: 'Invalid credentials'
 
 passport.serializeUser (user, done) ->
-  done null, user.id
+  done null, user
 
-passport.deserializeUser (id, done) ->
-  db.getTeamById id, (err, response) ->
-    done null, _.first response
+passport.deserializeUser (user, done) ->
+  done null, user
 
 exports.passport = passport
 
