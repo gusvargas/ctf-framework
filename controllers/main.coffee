@@ -29,7 +29,7 @@ Controller =
 
   gameboard: (req, res) ->
     db.getAllChallenges (err, challenges) ->
-      res.render 'default',
+      res.render 'gameboard',
         challenges: challenges
 
   serveAdminUI: (req, res) ->
