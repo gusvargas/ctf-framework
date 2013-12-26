@@ -8,6 +8,7 @@ pool = mysql.createPool
   password: 'g0t_r00t'
   database: 'ctf'
   connectionLimit: 10
+  supportBugNumbers: true
 
 executeQuery = (query, params=[], callback) ->
   if typeof params is 'function'
@@ -17,7 +18,7 @@ executeQuery = (query, params=[], callback) ->
   pool.getConnection (err, connection) ->
     if err
       console.log 'Error aquiring connection from pool: ', err
-      callback true
+      callback err
       return
 
     connection.query query, params, (err, results) ->
@@ -55,7 +56,7 @@ exports.getAllChallenges = (callback) ->
   executeQuery query, callback
 
 exports.getChallenge = (id, callback) ->
-  query = "SELECT * FROM Challenges WHERE id = ?"
+  query = 'SELECT * FROM Challenges WHERE id = ?'
   executeQuery query, [id], callback
 
 exports.createChallenge = (challenge, callback) ->
@@ -69,3 +70,21 @@ exports.updateChallenge = (id, challenge, callback) ->
 exports.deleteChallenge = (id, callback) ->
   query = 'DELETE FROM Challenges WHERE id = ?'
   executeQuery query, [id], callback
+
+exports.getScoreboard = (callback) ->
+  query = '
+    SELECT t.name, SUM(c.points) AS points, MAX(s.time) AS last_submission
+    FROM Teams t, Solutions s, Challenges c
+    WHERE t.id = s.t_id AND c.id = s.chal_id
+    GROUP BY t.name
+  '
+  executeQuery query, callback
+
+exports.solveChallenge = (chalId, teamId, callback) ->
+  query = 'INSERT INTO Solutions SET ?'
+  params =
+    t_id: teamId
+    chal_id: chalId
+    time: +(new Date)
+
+  executeQuery query, params, callback

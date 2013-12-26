@@ -44,11 +44,15 @@ app.post  '/register',          mainController.processRegister
 app.get   /^\/admin(\/\w+)*$/,  auth.required, mainController.serveAdminUI
 
 # API routes
+app.all     /^\/api(\/\w+)*$/,      auth.required
 app.get     '/api/challenges',      apiController.getAllChallenges
 app.get     '/api/challenges/:id',  apiController.getChallenge
 app.post    '/api/challenges',      apiController.createChallenge
 app.put     '/api/challenges/:id',  apiController.updateChallenge
 app.patch   '/api/challenges/:id',  apiController.updateChallenge
 app.delete  '/api/challenges/:id',  apiController.deleteChallenge
+
+app.get     '/api/game/scoreboard',       apiController.getScoreboard
+app.post    '/api/game/submissions/:id',  apiController.submitFlag
 
 app.listen process.env['PORT'] || 1337

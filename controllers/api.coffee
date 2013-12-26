@@ -1,6 +1,7 @@
 db = require '../database'
 utils = require '../utils'
 _ = require 'underscore'
+bcrypt = require 'bcrypt'
 
 API =
   getAllChallenges: (req, res) ->
@@ -83,5 +84,35 @@ API =
 
       res.send 200
 
+  getScoreboard: (req, res) ->
+    db.getScoreboard (err, results) ->
+      if err
+        res.send 500, 'Server Error'
+        return
+
+      res.json results
+
+  submitFlag: (req, res) ->
+    teamId = req.user.id
+    chalId = req.params.id
+    flag = req.body.flag
+
+    db.getChallenge chalId, (err, result) ->
+      if err
+        res.send 500, 'Server Error'
+        return
+
+      if results.length is 0
+        res.send 404, 'Not Found'
+        return
+
+      challenge = _.first result
+      bcrypt.compare flag, challenge.flag, (err, match) ->
+        unless match
+          res.send 400, 'Incorrect Submission'
+          return
+
+        db.solveChallenge chalId, teamId, (err, r) ->
+          res.send 200
 
 module.exports = API
