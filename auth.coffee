@@ -35,10 +35,14 @@ passport.deserializeUser (id, done) ->
 
 exports.passport = passport
 
-exports.process = passport.authenticate 'local',
+exports.login = passport.authenticate 'local',
   successRedirect: '/'
   failureRedirect: '/login'
   failureFlash: true
+
+exports.logout = (req, res) ->
+  req.logout()
+  res.redirect '/login'
 
 exports.required = (req, res, next) ->
   return next() if req.isAuthenticated()

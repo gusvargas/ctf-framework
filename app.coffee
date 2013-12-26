@@ -31,8 +31,8 @@ app.configure ->
 # User routes
 app.get '/', auth.required, mainController.gameboard
 app.get '/login', mainController.showLogin
-app.get '/logout', mainController.logout
-app.post '/login', auth.process
+app.post '/login', auth.login
+app.get '/logout', auth.logout
 app.get '/register', mainController.showRegister
 app.post '/register', mainController.processRegister
 app.get /^\/admin(\/\w+)*$/, auth.required, mainController.serveAdminUI
