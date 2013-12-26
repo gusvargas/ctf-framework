@@ -22,10 +22,10 @@ CREATE TABLE IF NOT EXISTS Challenges (
     PRIMARY KEY(id)
 );
 
-CREATE TABLE IF NOT EXISTS Solutions (
+CREATE TABLE IF NOT EXISTS Submissions (
     t_id INT NOT NULL ,
     chal_id INT NOT NULL ,
-    flag varchar(64) NULL,
+    flag VARCHAR(64) NULL,
     time BIGINT NOT NULL,
 
     PRIMARY KEY (t_id, chal_id, time),
