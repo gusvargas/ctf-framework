@@ -51,4 +51,4 @@ app.put     '/api/challenges/:id',  apiController.updateChallenge
 app.patch   '/api/challenges/:id',  apiController.updateChallenge
 app.delete  '/api/challenges/:id',  apiController.deleteChallenge
 
-app.listen 1337
+app.listen process.env['PORT'] || 1337
