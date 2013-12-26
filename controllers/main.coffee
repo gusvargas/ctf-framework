@@ -25,8 +25,10 @@ Controller =
 
   gameboard: (req, res) ->
     db.getAllChallenges (err, challenges) ->
-      res.render 'gameboard',
-        challenges: challenges
+      db.getScoreboard (err, scoreboard) ->
+        res.render 'gameboard',
+          challenges: challenges
+          scoreboard: scoreboard
 
   serveAdminUI: (req, res) ->
     res.sendfile './static/adminUI/public/index.html'

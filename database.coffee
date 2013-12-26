@@ -73,7 +73,7 @@ exports.deleteChallenge = (id, callback) ->
 
 exports.getScoreboard = (callback) ->
   query = '
-    SELECT t.name, SUM(c.points) AS points, MAX(s.time) AS last_submission
+    SELECT t.name AS team, SUM(c.points) AS points, MAX(s.time) AS last_submission
     FROM Teams t, Solutions s, Challenges c
     WHERE t.id = s.t_id AND c.id = s.chal_id
     GROUP BY t.name
