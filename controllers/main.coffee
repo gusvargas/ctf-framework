@@ -27,7 +27,7 @@ Controller =
       req.flash 'info', 'Team registered successfully.'
       res.redirect '/login'
 
-  scoreboard: (req, res) ->
+  gameboard: (req, res) ->
     db.getAllChallenges (err, challenges) ->
       res.render 'default',
         challenges: challenges

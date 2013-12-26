@@ -29,7 +29,7 @@ app.configure ->
   app.use '/img', express.static "#{__dirname}/static/adminUI/public/img"
 
 # User routes
-app.get '/', auth.required, mainController.scoreboard
+app.get '/', auth.required, mainController.gameboard
 app.get '/login', mainController.showLogin
 app.get '/logout', mainController.logout
 app.post '/login', auth.process
