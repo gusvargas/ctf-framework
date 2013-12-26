@@ -29,13 +29,13 @@ app.configure ->
   app.use '/img', express.static "#{__dirname}/static/adminUI/public/img"
 
 # User routes
-app.get '/', auth.required, mainController.gameboard
-app.get '/login', mainController.showLogin
-app.post '/login', auth.login
-app.get '/logout', auth.logout
-app.get '/register', mainController.showRegister
-app.post '/register', mainController.processRegister
-app.get /^\/admin(\/\w+)*$/, auth.required, mainController.serveAdminUI
+app.get   '/',                  auth.required, mainController.gameboard
+app.get   '/login',             mainController.showLogin
+app.post  '/login',             auth.login
+app.get   '/logout',            auth.logout
+app.get   '/register',          mainController.showRegister
+app.post  '/register',          mainController.processRegister
+app.get   /^\/admin(\/\w+)*$/,  auth.required, mainController.serveAdminUI
 
 # API routes
 app.get     '/api/challenges',      apiController.getAllChallenges
