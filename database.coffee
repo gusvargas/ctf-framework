@@ -10,6 +10,10 @@ pool = mysql.createPool
   connectionLimit: 10
 
 executeQuery = (query, params=[], callback) ->
+  if typeof params is 'function'
+    callback = params
+    params = []
+
   pool.getConnection (err, connection) ->
     if err
       console.log 'Error aquiring connection from pool: ', err
@@ -25,6 +29,8 @@ executeQuery = (query, params=[], callback) ->
         return
 
       callback false, results
+
+exports.executeQuery = executeQuery
 
 exports.getTeamByName = (team, callback) ->
   query = 'SELECT * FROM Teams WHERE name = ?'
