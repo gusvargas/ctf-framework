@@ -24,6 +24,12 @@ app.configure ->
   app.use auth.passport.initialize()
   app.use auth.passport.session()
 
+  # These are accessed by the templates in /views, e.g., gameboard.hbs
+  app.use 'assets/js', express.static "#{__dirname}/static/assets/js"
+  app.use 'assets/css', express.static "#{__dirname}/static/assets/css"
+  app.use 'assets/img', express.static "#{__dirname}/static/assets/img"
+
+  # These are accessed by the adminUI brunch app
   app.use '/javascripts', express.static "#{__dirname}/static/adminUI/public/javascripts"
   app.use '/stylesheets', express.static "#{__dirname}/static/adminUI/public/stylesheets"
   app.use '/img', express.static "#{__dirname}/static/adminUI/public/img"
