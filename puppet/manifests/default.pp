@@ -25,3 +25,9 @@ exec { 'create-tables':
   path      => '/usr/bin/',
   require   => Mysql_database['ctf'],
 }
+
+exec { 'create-admin':
+  command   => "mysql -u root --password='${ROOT_PASSWORD}' < /vagrant/admin.sql",
+  path      => '/usr/bin/',
+  require   => Exec['create-tables'],
+}
