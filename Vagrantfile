@@ -17,6 +17,9 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
       puppet.manifests_path = "puppet/manifests"
       puppet.module_path    = "puppet/modules"
       puppet.manifest_file = "default.pp"
+      puppet.facter = {
+        "fqdn" => "ctf.local"
+      }
     end
   end
 end
