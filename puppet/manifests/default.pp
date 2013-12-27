@@ -1,8 +1,7 @@
 include application
 
 $ROOT_PASSWORD = 'g0t_r00t'
-$ADMIN_PASSWORD = 'qwer1234'
-$USER_PASSWORD = ''
+$CTF_PASSWORD = 'qwer1234'
 
 class { 'mysql::server':
   root_password           => $ROOT_PASSWORD,
@@ -15,8 +14,8 @@ class { 'mysql::server':
 }
 
 mysql::db { 'ctf':
-  user      => 'admin',
-  password  => 'qwer1234',
+  user      => 'ctf',
+  password  => $CTF_PASSWORD,
   host      => 'localhost',
   grant     => ['SELECT', 'UPDATE', 'INSERT', 'DELETE'],
 }

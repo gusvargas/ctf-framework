@@ -4,10 +4,10 @@ _ = require 'underscore'
 
 pool = mysql.createPool
   host: 'localhost'
-  user: 'root'
-  password: 'g0t_r00t'
+  user: 'ctf'
+  password: 'qwer1234'
   database: 'ctf'
-  connectionLimit: 10
+  connectionLimit: 100
   supportBugNumbers: true
 
 executeQuery = (query, params=[], callback) ->
