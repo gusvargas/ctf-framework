@@ -8,7 +8,7 @@ pool = mysql.createPool
   password: 'qwer1234'
   database: 'ctf'
   connectionLimit: 100
-  supportBugNumbers: true
+  supportBigNumbers: true
 
 executeQuery = (query, params=[], callback) ->
   if typeof params is 'function'
