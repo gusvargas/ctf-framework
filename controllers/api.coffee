@@ -34,7 +34,7 @@ API =
 
     utils.bcryptAttribute challenge, 'flag', (err, safeChallenge) ->
       if err
-        console.log 'Error hashing flag'
+        console.error 'Error hashing flag'
         return
 
       db.createChallenge safeChallenge, (err, results) ->

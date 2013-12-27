@@ -17,7 +17,7 @@ executeQuery = (query, params=[], callback) ->
 
   pool.getConnection (err, connection) ->
     if err
-      console.log 'Error aquiring connection from pool: ', err
+      console.error 'Error aquiring connection from pool: ', err
       callback err
       return
 
@@ -25,7 +25,7 @@ executeQuery = (query, params=[], callback) ->
       connection.release()
 
       if err
-        console.log "Error running query '#{query}': ", err
+        console.error "Error running query '#{query}': ", err
         callback err
         return
 
@@ -41,7 +41,7 @@ exports.createTeam = (team, callback) ->
   query = 'INSERT INTO Teams SET ?'
   utils.bcryptAttribute team, 'password', (err, safeTeam) ->
     if err
-      console.log 'Error hashing team password'
+      console.error 'Error hashing team password'
       callback err
       return
 
