@@ -41,10 +41,14 @@ app.post  '/login',             auth.login
 app.get   '/logout',            auth.logout
 app.get   '/register',          mainController.showRegister
 app.post  '/register',          mainController.processRegister
-app.get   /^\/admin(\/\w+)*$/,  auth.required, mainController.serveAdminUI
+app.get   /^\/admin(\/\w+)*$/,  auth.needsAdmin, mainController.serveAdminUI
 
 # API routes
-app.all     /^\/api(\/\w+)*$/,      auth.required
+app.get     /^\/api(\/\w+)*$/,      auth.required
+app.put     /^\/api(\/\w+)*$/,      auth.required
+app.post    /^\/api(\/\w+)*$/,      auth.required
+app.delete  /^\/api(\/\w+)*$/,      auth.needsAdmin
+
 app.get     '/api/challenges',      apiController.getAllChallenges
 app.get     '/api/challenges/:id',  apiController.getChallenge
 app.post    '/api/challenges',      apiController.createChallenge

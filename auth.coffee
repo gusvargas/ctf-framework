@@ -46,3 +46,7 @@ exports.logout = (req, res) ->
 exports.required = (req, res, next) ->
   return next() if req.isAuthenticated()
   res.redirect '/login'
+
+exports.needsAdmin = (req, res, next) ->
+  return next() if req.user?.admin
+  res.send 403
