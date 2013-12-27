@@ -17,7 +17,7 @@ Controller =
           res.redirect '/register'
         else
           req.flash 'error', 'Registration failed.'
-          res.redirect '/regster'
+          res.redirect '/register'
         return
 
       req.flash 'info', 'Team registered successfully.'
