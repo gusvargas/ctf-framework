@@ -10,9 +10,6 @@ class ChallengesLayout extends Backbone.Marionette.Layout
 	id: 'challenges-layout'
 	template: template
 
-	ui:
-		toolbar: '#toolbar-container'
-
 	regions:
 		sideBar: '#challenges-sidebar'
 		table: '#challenges-container'

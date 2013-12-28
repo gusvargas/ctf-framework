@@ -1,6 +1,7 @@
 AppLayout = require 'views/AppLayout'
 NavView = require 'views/NavView'
 Challenges = require 'collections/Challenges'
+Teams = require 'collections/Teams'
 
 class Application extends Backbone.Marionette.Application
   initialize: =>
@@ -33,7 +34,8 @@ class Application extends Backbone.Marionette.Application
       @layout.nav.show nv
 
     @challenges = new Challenges
-    @challenges.fetch().then =>
+    @teams = new Teams
+    Q.all([@challenges.fetch(), @teams.fetch()]).then =>
       @start()
 
 

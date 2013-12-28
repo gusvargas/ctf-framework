@@ -14,6 +14,8 @@ exports.config =
           'vendor/scripts/backbone.js'
           'vendor/scripts/backbone.marionette.js'
           'vendor/scripts/bootstrap.js'
+          'vendor/scripts/chosen.jquery.min.js'
+          'vendor/scripts/q.js'
         ]
 
     stylesheets:
@@ -24,6 +26,7 @@ exports.config =
           'vendor/styles/bootstrap.css'
           'vendor/styles/bootstrap-body.css'
           'vendor/styles/bootstrap-responsive.css'
+          'vendor/styles/chosen.min.css'
         ]
         after: []
 
