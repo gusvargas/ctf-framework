@@ -41,22 +41,21 @@ app.post  '/login',             auth.login
 app.get   '/logout',            auth.logout
 app.get   '/register',          mainController.showRegister
 app.post  '/register',          mainController.processRegister
+
 app.get   /^\/admin(\/\w+)*$/,  auth.needsAdmin, mainController.serveAdminUI
 
 # API routes
-app.get     /^\/api(\/\w+)*$/,      auth.required
-app.put     /^\/api(\/\w+)*$/,      auth.required
-app.post    /^\/api(\/\w+)*$/,      auth.required
-app.delete  /^\/api(\/\w+)*$/,      auth.needsAdmin
+app.get     '/api/challenges',      auth.required, apiController.getAllChallenges
+app.get     '/api/challenges/:id',  auth.required, apiController.getChallenge
+app.post    '/api/challenges',      auth.required, apiController.createChallenge
+app.put     '/api/challenges/:id',  auth.required, apiController.updateChallenge
+app.patch   '/api/challenges/:id',  auth.required, apiController.updateChallenge
+app.delete  '/api/challenges/:id',  auth.needsAdmin, apiController.deleteChallenge
 
-app.get     '/api/challenges',      apiController.getAllChallenges
-app.get     '/api/challenges/:id',  apiController.getChallenge
-app.post    '/api/challenges',      apiController.createChallenge
-app.put     '/api/challenges/:id',  apiController.updateChallenge
-app.patch   '/api/challenges/:id',  apiController.updateChallenge
-app.delete  '/api/challenges/:id',  apiController.deleteChallenge
+app.get     '/api/teams',     auth.needsAdmin, apiController.getAllTeams
+app.delete  '/api/teams/:id', auth.needsAdmin, apiController.deleteTeam
 
-app.get     '/api/game/scoreboard',       apiController.getScoreboard
-app.post    '/api/game/submissions/:id',  apiController.submitFlag
+app.get     '/api/game/scoreboard',     auth.required, apiController.getScoreboard
+app.post    '/api/game/solutions/:id',  auth.required, apiController.submitFlag
 
 app.listen process.env['PORT'] || 1337

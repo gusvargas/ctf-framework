@@ -115,4 +115,26 @@ API =
         db.solveChallenge chalId, teamId, ->
           res.send 200
 
+  getAllTeams: (req, res) ->
+    db.getAllTeams (err, results) ->
+      if err
+        res.send 500, 'Server Error'
+        return
+
+      res.json results
+
+  deleteTeam: (req, res) ->
+    teamId = req.params.id
+
+    db.deleteTeam teamId, (err, results) ->
+      if err
+        res.send 500, 'Server Error'
+        return
+
+      if results.affectedRows is 0
+        res.send 404, 'Not Found'
+        return
+
+      res.send 200
+
 module.exports = API

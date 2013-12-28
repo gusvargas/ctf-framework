@@ -88,3 +88,11 @@ exports.solveChallenge = (chalId, teamId, callback) ->
     time: +(new Date)
 
   executeQuery query, params, callback
+
+exports.getAllTeams = (callback) ->
+  query = 'SELECT id, name FROM Teams'
+  executeQuery query, callback
+
+exports.deleteTeam = (id, callback) ->
+  query = 'DELETE FROM Teams WHERE id = ?'
+  executeQuery query, [id], callback
