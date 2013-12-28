@@ -7,7 +7,7 @@ class application::startup {
   }
 
   exec { 'start-server':
-    command => 'supervisor -e coffee,hbs ./start.js 2> /home/vagrant/dev.log &',
+    command => 'supervisor -e coffee,hbs -i static ./start.js 2> /home/vagrant/dev.log &',
     cwd => '/vagrant',
     creates => '/home/vagrant/dev.log',
     require => Exec['build-adminUI'],
