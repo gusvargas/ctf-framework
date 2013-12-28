@@ -112,7 +112,7 @@ API =
           res.send 400, 'Incorrect Submission'
           return
 
-        db.solveChallenge chalId, teamId, (err, r) ->
+        db.solveChallenge chalId, teamId, ->
           res.send 200
 
 module.exports = API
