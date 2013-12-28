@@ -5,6 +5,8 @@ ChallengeForm = require 'views/ChallengeFormView'
 
 Controller =
   showChallengesLayout: ->
+    App.layout.nav.currentView.setLocation 'challenges'
+
     cl = new ChallengesLayout
     App.layout.content.show cl
 
@@ -23,6 +25,8 @@ Controller =
       App.router.navigate 'challenges'
 
   showTeamsLayout: ->
+    App.layout.nav.currentView.setLocation 'teams'
+
     tl = new TeamsLayout
     App.layout.content.show tl
 

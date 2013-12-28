@@ -16,11 +16,15 @@ class NavView extends Backbone.Marionette.ItemView
     App = require 'application'
     $target = $(e.currentTarget)
 
-    @ui.navItems.removeClass 'active'
-    $target.parent().addClass 'active'
-
     location = $target.data 'location'
+
     App.vent.trigger location
+
+  setLocation: (location) ->
+    @ui.navItems.removeClass 'active'
+    @ui.navItems.find("a[data-location='#{location}']")
+                .parent()
+                .addClass 'active'
 
 
 module.exports = NavView
