@@ -3,8 +3,7 @@ hbs = require 'express3-handlebars'
 flash = require 'connect-flash'
 
 auth = require './auth'
-mainController = require './controllers/main'
-apiController = require './controllers/api'
+routes = require './routes'
 
 app = express()
 
@@ -34,28 +33,6 @@ app.configure ->
   app.use '/stylesheets', express.static "#{__dirname}/static/adminUI/public/stylesheets"
   app.use '/img', express.static "#{__dirname}/static/adminUI/public/img"
 
-# User routes
-app.get   '/',                  auth.required, mainController.gameboard
-app.get   '/login',             mainController.showLogin
-app.post  '/login',             auth.login
-app.get   '/logout',            auth.logout
-app.get   '/register',          mainController.showRegister
-app.post  '/register',          mainController.processRegister
-
-app.get   /^\/admin(\/\w+)*$/,  auth.needsAdmin, mainController.serveAdminUI
-
-# API routes
-app.get     '/api/challenges',      auth.required, apiController.getAllChallenges
-app.get     '/api/challenges/:id',  auth.required, apiController.getChallenge
-app.post    '/api/challenges',      auth.required, apiController.createChallenge
-app.put     '/api/challenges/:id',  auth.required, apiController.updateChallenge
-app.patch   '/api/challenges/:id',  auth.required, apiController.updateChallenge
-app.delete  '/api/challenges/:id',  auth.needsAdmin, apiController.deleteChallenge
-
-app.get     '/api/teams',     auth.needsAdmin, apiController.getAllTeams
-app.delete  '/api/teams/:id', auth.needsAdmin, apiController.deleteTeam
-
-app.get     '/api/game/scoreboard',     auth.required, apiController.getScoreboard
-app.post    '/api/game/solutions/:id',  auth.required, apiController.submitFlag
+routes(app, auth)
 
 app.listen process.env['PORT'] || 1337
