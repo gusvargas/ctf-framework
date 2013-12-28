@@ -90,7 +90,7 @@ exports.solveChallenge = (chalId, teamId, callback) ->
   executeQuery query, params, callback
 
 exports.getAllTeams = (callback) ->
-  query = 'SELECT id, name FROM Teams'
+  query = 'SELECT id, name, admin FROM Teams'
   executeQuery query, callback
 
 exports.deleteTeam = (id, callback) ->
