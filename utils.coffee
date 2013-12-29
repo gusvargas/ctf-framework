@@ -16,7 +16,7 @@ exports.validateChallenge = (challenge, strict=false) ->
   validateObj challenge, attrs, strict
 
 exports.validateTeam = (team, strict=false) ->
-  attrs = ['name', 'email', 'password']
+  attrs = ['name', 'email', 'password', 'admin']
 
   validateObj team, attrs, strict
 

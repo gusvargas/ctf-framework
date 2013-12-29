@@ -93,6 +93,10 @@ exports.getAllTeams = (callback) ->
   query = 'SELECT id, name, admin FROM Teams'
   executeQuery query, callback
 
+exports.updateTeam = (id, team, callback) ->
+  query = 'UPDATE Teams SET ? WHERE id = ?'
+  executeQuery query, [team, id], callback
+
 exports.deleteTeam = (id, callback) ->
   query = 'DELETE FROM Teams WHERE id = ?'
   executeQuery query, [id], callback

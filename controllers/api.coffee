@@ -56,7 +56,7 @@ API =
     updatedChallenge = _.omit updatedChallenge, 'id'
     utils.bcryptAttribute updatedChallenge, 'flag', (err, safeChallenge) ->
       if err
-        console.log 'Error hashing flag'
+        console.error 'Error hashing flag'
         return
 
       db.updateChallenge id, safeChallenge, (err, results) ->
@@ -122,6 +122,31 @@ API =
         return
 
       res.json results
+
+  updateTeam: (req, res) ->
+    id = req.params.id
+    updatedTeam = utils.validateTeam req.body
+
+    unless updatedTeam
+      res.send 400, 'Bad Request'
+      return
+
+    updatedTeam = _.omit updatedTeam, 'id'
+    utils.bcryptAttribute updatedTeam, 'password', (err, safeTeam) ->
+      if err
+        console.error 'Error hashing flag'
+        return
+
+      db.updateTeam id, safeTeam, (err, results) ->
+        if err
+          res.send 500, 'Server Error'
+          return
+
+        if results.affected is 0
+          res.send 404, 'Not Found'
+          return
+
+        res.json safeTeam
 
   deleteTeam: (req, res) ->
     teamId = req.params.id

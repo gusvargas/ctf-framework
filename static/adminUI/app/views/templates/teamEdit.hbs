@@ -1,1 +1,13 @@
-<button class="btn btn-danger delete">Delete</button>
+<div class="password-control">
+  <input type="text" class="password" placeholder="Password" />
+  <button class="btn update-password">Update</button>
+</div>
+
+<div class="admin-control">
+  <label>
+    <input type="checkbox" class="admin-status" {{#if isAdmin}}checked{{/if}} />
+    Admin
+  </label>
+</div>
+
+<button class="btn btn-danger delete">Delete Team</button>

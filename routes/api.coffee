@@ -10,6 +10,8 @@ module.exports = (app, auth) ->
   app.delete  '/api/challenges/:id',  auth.needsAdmin, apiController.deleteChallenge
 
   app.get     '/api/teams',     auth.needsAdmin, apiController.getAllTeams
+  app.put     '/api/teams/:id', auth.needsAdmin, apiController.updateTeam
+  app.patch   '/api/teams/:id', auth.needsAdmin, apiController.updateTeam
   app.delete  '/api/teams/:id', auth.needsAdmin, apiController.deleteTeam
 
   app.get     '/api/game/scoreboard',     auth.required, apiController.getScoreboard
