@@ -26,7 +26,7 @@ Controller =
   gameboard: (req, res) ->
     db.getAllChallenges (err, challenges) ->
       db.getScoreboard (err, scoreboard) ->
-        res.render 'gameboard',
+        res.render 'gameboards/default',
           challenges: challenges
           scoreboard: scoreboard
 

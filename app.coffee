@@ -10,6 +10,7 @@ app = express()
 templateOpts =
   defaultLayout: false
   extname: '.hbs'
+  helpers: require './views/handlebars-helpers'
 
 app.configure ->
   app.engine '.hbs', hbs templateOpts
