@@ -16,6 +16,7 @@ exports.config =
           'vendor/scripts/bootstrap.js'
           'vendor/scripts/chosen.jquery.min.js'
           'vendor/scripts/q.js'
+          'vendor/scripts/jquery.cookie.js'
         ]
 
     stylesheets:

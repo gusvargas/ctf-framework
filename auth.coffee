@@ -50,3 +50,9 @@ exports.required = (req, res, next) ->
 exports.needsAdmin = (req, res, next) ->
   return next() if req.user?.admin
   res.send 403
+
+exports.includeCSRFTokens = ->
+  (req,res, next) ->
+    res.cookie 'csrftoken', req.csrfToken()
+    res.locals.csrftoken = req.csrfToken()
+    next()

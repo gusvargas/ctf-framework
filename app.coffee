@@ -20,9 +20,11 @@ app.configure ->
   app.use express.bodyParser()
   app.use express.cookieParser()
   app.use express.session secret: 'secret'
-  app.use flash()
+  app.use express.csrf()
+  app.use auth.includeCSRFTokens()
   app.use auth.passport.initialize()
   app.use auth.passport.session()
+  app.use flash()
 
   # These are accessed by the templates in /views, e.g., gameboards
   app.use '/assets/js', express.static "#{__dirname}/static/assets/js"
