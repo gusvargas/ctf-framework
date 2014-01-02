@@ -10,27 +10,26 @@
   <meta name="viewport" content="width=device-width">
 </head>
 <body>
-  <h1>Gameboard</h1>
-  <hr />
-  <h2>Challenges</h2>
-  <ul>
-    {{#challenges}}
-      {{#unless locked}}
-        <li>{{name}}</li>
-      {{/unless}}
-    {{/challenges}}
-  </ul>
-  <h2>Scores</h2>
-  <ul>
-    {{#scoreboard}}
-      <li>{{team}} - {{points}}</li>
-    {{/scoreboard}}
-  </ul>
+
+  <div class="gameboard">
+    <table>
+      <thead></thead>
+      <tbody></tbody>
+    </table>
+  </div>
 
   <script>
+    // Bootstrap data for initial gameboard build
     window.challenges = {{{stringify challenges true}}};
     window.scoreboard = {{{stringify scoreboard}}};
   </script>
+
+  <script src="/assets/js/jquery.js"></script>
+  <script src="/assets/js/jquery.cookie.js"></script>
+  <script src="/assets/js/q.js"></script>
+  <script src="/assets/js/core.js"></script>
+  <script src="/assets/js/default/underscore.js"></script>
+  <script src="/assets/js/default/gameboard.js"></script>
 </body>
 </html>
 
